@@ -3,6 +3,8 @@ EPGA
 
 De Novo Assembler
 
+EPGA is used for paired-read libraries of read length shorter than 40bp and coverage larger than 100.
+
 1)Installing
 EPGA is written C++ and therefore will require a machine with GNU C++ pre-installed.
 Create a main directory (eg:EPGA). Copy all source code to this directory.
