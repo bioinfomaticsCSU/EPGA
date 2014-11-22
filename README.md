@@ -13,7 +13,7 @@ Run command line: g++ main.cpp -o epga -lpthread
 2)Running
 ./epga libraryName insertsize sd libraryName1 insertsize1 sd1 kmerLength threadNumber
 
-libraryName is paired-end reads file name in Fasta format (eg: read1.fa). Paired-end reads are in single file. Left mate read and right mate read stored in file one by one.
+libraryName is paired-end reads file name in Fasta format (eg: read1.fa). Paired-end reads are in single file. Left mate read and right mate read stored in file one by one.(For mate-paired reads, please transform them to paired-end reads.)
 
 insertsize is the sequence fragment length about paired-end reads (eg: 500).
 
