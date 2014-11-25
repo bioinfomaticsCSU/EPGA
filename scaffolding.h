@@ -918,12 +918,13 @@ ScaffoldSetHead * ScaffoldingContigSet(ContigSet * contigSet, ReadSet * readSet,
     
     scaffoldSetHead->gapNumber = gapNumber;
     
-    
+    /*
     char * address0 = new char[30];
     strcpy(address0, "contig.fa");
     WriteScaffoldSet(scaffoldSetHead, address0);
     strcpy(address0, "contigLong.fa");
     WriteScaffoldSetLong(scaffoldSetHead, address0);
+    */
     
     return scaffoldSetHead;
     
