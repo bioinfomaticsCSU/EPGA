@@ -736,7 +736,7 @@ void InitKmerSet(ReadSet * readSet, KmerSet * kmerSet, KmerSetHashTableHead * km
     unsigned long int allReadNumber = 0;
     allkmernum = 0;
     for(i = 0; i<setNumber; i++){
-        allReadNumber = allReadNumber + (readSet[i].readLength - kmerLength)*readSet[i].readNumber;
+        allReadNumber = allReadNumber + (readSet[i].readLength - kmerLength + 1)*readSet[i].readNumber;
     }
     KmerHashTable * kmerHashTable = new KmerHashTable[allReadNumber];
 
