@@ -68,17 +68,22 @@ int main(int argc, char *argv[])
     }
     
     
-    
+    cout<<"0--Getting Read Library Start."<<endl;
     InitReadSet(readSet, setNumber, threadNumber);
+    cout<<"0--Getting Read Library End."<<endl;
+    
     
     KmerSetHashTableHead * kmerSetHashTableHead = new KmerSetHashTableHead;
     kmerSetHashTableHead->kmerLength = globalKmerLength;
-    
+    cout<<"1--Getting K-mer set Start."<<endl;
     InitKmerSet(readSet,kmerSet, kmerSetHashTableHead, globalKmerLength, setNumber, threadNumber);
-       
+    cout<<"1--Getting K-mer set End."<<endl;
+    
     DBGraphHead * deBruijnGraphHead = new DBGraphHead;
     
+    cout<<"2--Getting De Bruijn Graph Start."<<endl;
     InitDBGraph(readSet, kmerLength, kmerSetHashTableHead,deBruijnGraphHead,threadNumber);
+    cout<<"2--Getting De Bruijn Graph End."<<endl;
     
     for(i = 0; i<setNumber; i++){
         GetAvgKmerNumberAndGapProblity(deBruijnGraphHead->deBruijnGraph, readSet, i, kmerSetHashTableHead->kmerSetHashTable, kmerSetHashTableHead->kmerSetHashTableCount, kmerLength);
@@ -86,8 +91,10 @@ int main(int argc, char *argv[])
     }
     
     ContigSet * contigSetHead = new ContigSet;
-    ConstructContigSet(deBruijnGraphHead, readSet, contigSetHead, setNumber, kmerSetHashTableHead->kmerSetHashTable, kmerSetHashTableHead->kmerSetHashTableCount, kmerLength, threadNumber, extendCutOff);
     
+    cout<<"3--Construct Contig Set Start."<<endl;
+    ConstructContigSet(deBruijnGraphHead, readSet, contigSetHead, setNumber, kmerSetHashTableHead->kmerSetHashTable, kmerSetHashTableHead->kmerSetHashTableCount, kmerLength, threadNumber, extendCutOff);
+    cout<<"3--Construct Contig Set End."<<endl;
          
     char str[30];
     //strcpy(str,"contigSet.fa");
@@ -100,9 +107,10 @@ int main(int argc, char *argv[])
     temp = contigSetHead->next;
     //WriteContigSet(temp, str);
     //WriteContigSetLong(temp, str1);
-    
+    cout<<"4--Merge Contigs Start."<<endl;
     contigSetHead->next = ContigMerge(contigSetHead->next, deBruijnGraphHead->deBruijnGraph, kmerLength, readSet, setNumber);
     contigSetHead->next = ContigMerge(contigSetHead->next, deBruijnGraphHead->deBruijnGraph, kmerLength, readSet, setNumber);
+    cout<<"4--Merge Contigs End."<<endl;
     //exit(0);
     temp = contigSetHead->next;
     i = 0;
@@ -112,7 +120,7 @@ int main(int argc, char *argv[])
     }
     
     
-    
+    //cout<<"Output Contig Set."<<endl;
     strcpy(str,"contigSet.fa");
     strcpy(str1,"contigSetLong.fa");
     
@@ -120,7 +128,7 @@ int main(int argc, char *argv[])
     WriteContigSet(temp, str);
     WriteContigSetLong(temp, str1);
     
-    
+    cout<<"5--Scaffold and Fill gap Start."<<endl;
     ScaffoldSetHead * scaffoldSetHead = ScaffoldingContigSet(temp, readSet, setNumber, 3*kmerLength, kmerLength, threadNumber);
     
     
@@ -136,7 +144,7 @@ int main(int argc, char *argv[])
     
     scaffoldSetHead = ScaffoldingContigSet(temp, readSet, setNumber, kmerLength, kmerLength, threadNumber);    
     FillGap(scaffoldSetHead, readSet, setNumber, kmerSetHashTableHead, kmerLength, threadNumber); 
-        
+    cout<<"5--Scaffold and Fill gap End."<<endl;    
     
     
     
