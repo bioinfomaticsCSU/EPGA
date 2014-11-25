@@ -113,12 +113,12 @@ int main(int argc, char *argv[])
     
     
     
-    //strcpy(str,"contigSet1.fa");
-    //strcpy(str1,"contigSetLong1.fa");
+    strcpy(str,"contigSet.fa");
+    strcpy(str1,"contigSetLong.fa");
     
     temp = contigSetHead->next;
-    //WriteContigSet(temp, str);
-    //WriteContigSetLong(temp, str1);
+    WriteContigSet(temp, str);
+    WriteContigSetLong(temp, str1);
     
     
     ScaffoldSetHead * scaffoldSetHead = ScaffoldingContigSet(temp, readSet, setNumber, 3*kmerLength, kmerLength, threadNumber);
