@@ -736,14 +736,14 @@ void InitKmerSet(ReadSet * readSet, KmerSet * kmerSet, KmerSetHashTableHead * km
     unsigned long int allReadNumber = 0;
     allkmernum = 0;
     for(i = 0; i<setNumber; i++){
-        allReadNumber = allReadNumber + readSet[i].readNumber;
+        allReadNumber = allReadNumber + (readSet[i].readLength - kmerLength)*readSet[i].readNumber;
     }
-    KmerHashTable * kmerHashTable = new KmerHashTable[(long int)(30*allReadNumber)];
+    KmerHashTable * kmerHashTable = new KmerHashTable[allReadNumber];
 
     for(i = 0; i<setNumber; i++){
 
         kmerSet[i].kmerLength = kmerLength;
-        kmerSet[i].kmerHashTableCount = 30*allReadNumber;
+        kmerSet[i].kmerHashTableCount = allReadNumber;
         kmerSet[i].kmerHashTable = kmerHashTable;
         GetKmerSet(readSet+i, kmerSet+i, totalThreadNumber);
         MergeKmerSet(kmerSet+i, totalThreadNumber);
