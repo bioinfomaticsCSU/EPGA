@@ -23,7 +23,7 @@ using namespace std;
  
 int main(int argc, char *argv[])
 {  
- 
+    cout<<endl;
     int i = 0;
     int j = 0;
     if((argc-3)%3 != 0){
