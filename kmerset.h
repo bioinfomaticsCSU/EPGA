@@ -761,10 +761,10 @@ void InitKmerSet(ReadSet * readSet, KmerSet * kmerSet, KmerSetHashTableHead * km
     
     kmerSetHashTableCount = (long int)(1.2*kmerSetHashTableCount);
     
-    ofstream ocout;
-    char * temp11 = new char[30];
-    strcpy(temp11,"kmersethashcount.fa");
-    ocout.open(temp11);
+    //ofstream ocout;
+    //char * temp11 = new char[30];
+    //strcpy(temp11,"kmersethashcount.fa");
+    //ocout.open(temp11);
 
 
     KmerSetHashTable * kmerSetHashTable = new KmerSetHashTable[kmerSetHashTableCount];
@@ -789,6 +789,7 @@ void InitKmerSet(ReadSet * readSet, KmerSet * kmerSet, KmerSetHashTableHead * km
     KmerSetHashTable * kmerSetHashTable1 = new KmerSetHashTable[kmerSetHashTableCount];
     GetKmerSetHashTableFromAddress(kmerSetHashTable1, setNumber, temp);
     
+    remove(temp); 
     //strcpy(temp,"allkmer.fa");
     //CopyToDisc1(kmerSetHashTable1, kmerLength, kmerSetHashTableCount, temp, setNumber);
     
