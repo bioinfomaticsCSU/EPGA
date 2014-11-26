@@ -313,13 +313,13 @@ void * CreateDBGraphThread(void * arg){
         for(t = 0; t<readLength - kmerLength + 1; t++){
             
             if(t<readLength - globalKmerLength && (index[t] + indexRC[readLength - globalKmerLength - t] != 0)){
-                q = DBGraphInsertNode(q, tempKmer[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, 2*createDBGraphP->kmerSetHashTableCount);
+                q = DBGraphInsertNode(q, tempKmer[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, createDBGraphP->deBruijnGraphHead->nodeNumber);
             }else if(t==readLength-globalKmerLength && (index[t] + indexRC[readLength - globalKmerLength - t] == 0)){
                 break;
             }else if(t==readLength-globalKmerLength && (index[t] + indexRC[readLength - globalKmerLength - t] != 0)){
-                q = DBGraphInsertNode(q, tempKmer[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, 2*createDBGraphP->kmerSetHashTableCount);
+                q = DBGraphInsertNode(q, tempKmer[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, createDBGraphP->deBruijnGraphHead->nodeNumber);
             }else if(t>readLength - globalKmerLength){
-                q = DBGraphInsertNode(q, tempKmer[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, 2*createDBGraphP->kmerSetHashTableCount);
+                q = DBGraphInsertNode(q, tempKmer[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, createDBGraphP->deBruijnGraphHead->nodeNumber);
             }else{
                 q = -1;
             }        
@@ -328,13 +328,13 @@ void * CreateDBGraphThread(void * arg){
         for(t = 0; t<readLength - kmerLength + 1; t++){
             
             if(t<readLength - globalKmerLength && (indexRC[t] + index[readLength - globalKmerLength - t] != 0)){
-                qR = DBGraphInsertNode(qR, tempKmerReverseComplement[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, 2*createDBGraphP->kmerSetHashTableCount);
+                qR = DBGraphInsertNode(qR, tempKmerReverseComplement[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, createDBGraphP->deBruijnGraphHead->nodeNumber);
             }else if(t==readLength-globalKmerLength && (indexRC[t] + index[readLength - globalKmerLength - t] == 0)){
                 break;
             }else if(t==readLength-globalKmerLength && (indexRC[t] + index[readLength - globalKmerLength - t] != 0)){
-                qR = DBGraphInsertNode(qR, tempKmerReverseComplement[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, 2*createDBGraphP->kmerSetHashTableCount);
+                qR = DBGraphInsertNode(qR, tempKmerReverseComplement[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, createDBGraphP->deBruijnGraphHead->nodeNumber);
             }else if(t>readLength - globalKmerLength){
-                qR = DBGraphInsertNode(qR, tempKmerReverseComplement[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, 2*createDBGraphP->kmerSetHashTableCount);
+                qR = DBGraphInsertNode(qR, tempKmerReverseComplement[t], kmerLength, createDBGraphP->deBruijnGraphHead->deBruijnGraph, createDBGraphP->deBruijnGraphHead->nodeNumber);
             }else{
                 qR = -1;
             }
@@ -1059,12 +1059,16 @@ void InitDBGraph(ReadSet * readSet, int kmerLength, KmerSetHashTableHead* kmerSe
     unsigned long int kmerSetHashTableCount = kmerSetHashTableHead->kmerSetHashTableCount;
     long int setNumber = kmerSetHashTableHead->setNumber;
     
-    
-
     deBruijnGraphHead->nodeNumber = 0;
-    long int graphNode = 8*kmerSetHashTableCount;
+    long int graphNode = 0;
+    for(i = 0; i<setNumber; i++){
+        graphNode = graphNode + (readSet[i].readLength - kmerLength + 1)*readSet[i].readNumber;
+    }
+    
     DBGraph * deBruijnGraph = new DBGraph[graphNode];
     deBruijnGraphHead->deBruijnGraph = deBruijnGraph;
+    deBruijnGraphHead->nodeNumber = graphNode;
+    
     for(num = 0; num < setNumber; num++){  
         CreateDBGraph(readSet + num, kmerLength, kmerSetHashTable, kmerSetHashTableCount, setNumber, deBruijnGraphHead,totalThreadNumber);
     } 
