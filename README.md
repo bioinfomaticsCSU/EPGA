@@ -1,5 +1,5 @@
 
-###############################################################################
+================================================================================
 Copyright (C) 2014 Junwei Luo(luojunwei@csu.edu.cn)
 
 This program is free software; you can redistribute it and/or
@@ -20,7 +20,7 @@ School of Information Science and Engineering
 Central South University
 ChangSha
 CHINA, 410083
-###############################################################################
+================================================================================
 
 
 De Novo Assembler
