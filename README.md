@@ -1,3 +1,5 @@
+License
+=========
 
 Copyright (C) 2014 Junwei Luo(luojunwei@csu.edu.cn)
 
