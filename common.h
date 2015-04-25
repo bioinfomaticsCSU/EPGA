@@ -241,6 +241,8 @@ bool ReverseComplement(char * temp1, char * temp2){
             temp2[len-1-i]='C';
         }else if(temp1[i]=='C'){
             temp2[len-1-i]='G';
+        }else if(temp1[i]=='N'){
+            temp2[len-1-i]='N';
         }else{
              return false;
         }
