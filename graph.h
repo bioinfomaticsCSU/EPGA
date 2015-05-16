@@ -27,6 +27,16 @@ typedef struct GraphNode{
 }GraphNode;
 #pragma pack ()
 
+void DeleteGraphNode(GraphNode * first){
+    GraphNode * temp = NULL;
+    while(first!=NULL){
+        temp = first;
+        first = first->next;
+        delete temp;
+        temp = NULL;
+    }
+}
+
 #pragma pack(2)
 typedef struct DBGraph{
     char * contig;
