@@ -28,6 +28,18 @@ typedef struct DFSNode{
 }DFSNode;
 #pragma pack ()
 
+void DeleteDFSNode(DFSNode * head){   
+    DFSNode * temp = NULL;
+    while(head !=NULL){
+        delete [] head->contig;
+        head->contig = NULL;
+        temp = head;
+        head = head->next;
+        delete temp;
+        temp = NULL;
+    }
+}
+
 DFSNode * DFS(DBGraph * deBruijnGraph, DFSNode * dfsNode, long int start, long int pos, long int kmerLength, long int length,DFSNode * firstDFSNode,long int index){     
      
      if(start!=0){
