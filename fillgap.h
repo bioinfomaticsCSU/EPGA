@@ -449,6 +449,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
             if((tempAdjNode[0]==rightFirst || tempAdjNode[1]==rightFirst) && fillGapDistance - kmerLength + 1>= (long int)(0.5*gapDistance)){  
                 globalFillingPathNum++;
                 delete [] nodeRepeateNumber;
+                DeleteDFSNode(tempDFSNode);
                 return 1;                
             }
 
@@ -456,6 +457,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                 //cout<<"maxWeight[0]<=0.2---"<<maxWeight[0]<<endl;
                 delete [] nodeRepeateNumber;
                 wrongFillingPathNum ++;
+                DeleteDFSNode(tempDFSNode);
                 return 0;
             }
             //cout<<"node3"<<endl;
@@ -468,6 +470,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                     storeLengthPathNum ++;
                     wrongFillingPathNum ++;
                     delete [] nodeRepeateNumber;
+                    DeleteDFSNode(tempDFSNode);
                     return 0;
                 }
                 nodeRepeateNumber[pos]++;
@@ -475,6 +478,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                     //cout<<"fillRepeateNumberMax!"<<endl;
                     wrongFillingPathNum ++;
                     delete [] nodeRepeateNumber;
+                    DeleteDFSNode(tempDFSNode);
                     return 0;
                 } 
                 //cout<<"node1:"<<pos<<endl; 
@@ -499,6 +503,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                             storeLengthPathNum ++;
                             wrongFillingPathNum ++;
                             delete [] nodeRepeateNumber;
+                            DeleteDFSNode(tempDFSNode);
                             return 0;
                         }
                         nodeRepeateNumber[pos]++;
@@ -506,6 +511,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                             //cout<<"fillRepeateNumberMax!"<<endl;
                             delete [] nodeRepeateNumber;
                             wrongFillingPathNum ++;
+                            DeleteDFSNode(tempDFSNode);
                             return 0;
                         } 
                         //cout<<"qq:"<<storeLength<<"--"<<contigLeftLength + strlen(deBruijnGraph[pos].contig)-kmerLength + 1<<endl;
@@ -535,6 +541,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                             storeLengthPathNum ++;
                             wrongFillingPathNum ++;
                             delete [] nodeRepeateNumber;
+                            DeleteDFSNode(tempDFSNode);
                             return 0;
                         }
                         nodeRepeateNumber[pos]++;
@@ -542,6 +549,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                             //cout<<"fillRepeateNumberMax!"<<endl;
                             delete [] nodeRepeateNumber;
                             wrongFillingPathNum ++;
+                            DeleteDFSNode(tempDFSNode);
                             return 0;
                         }
                         char * tempContigLeft = new char[storeLength+1];
@@ -565,7 +573,7 @@ int FillingGapRegion(char * contigLeft, long int contigLeftLength, char * contig
                 }
                 //cout<<"path many"<<endl;
                 delete [] nodeRepeateNumber;
-                
+                DeleteDFSNode(tempDFSNode);
                 return 0;
             }
         }
