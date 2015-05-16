@@ -651,6 +651,7 @@ char * ExtendContigRight(DBGraph * deBruijnGraph, long int pos, ReadSet * readSe
     
     while(outCount!=0){
         if(outCount == 0){
+            DeleteGraphNode(first);
             return contig;
             break;
         }
@@ -679,6 +680,7 @@ char * ExtendContigRight(DBGraph * deBruijnGraph, long int pos, ReadSet * readSe
                 SubContig(tempContig,contig,0,strlen(contig)-cycleCut);
                 delete []contig;
                 contig = NULL;
+                DeleteGraphNode(first);
                 return tempContig;
             } 
                     
@@ -816,18 +818,22 @@ char * ExtendContigRight(DBGraph * deBruijnGraph, long int pos, ReadSet * readSe
                     SubContig(tempContig,contig,0,strlen(contig)-cycleCut);
                     delete []contig;
                     contig = NULL;
+                    DeleteDFSNode(tempDFSNode);
+                    DeleteGraphNode(first);
                     return tempContig;
                 }            
                 
             }else{
+            	DeleteDFSNode(tempDFSNode);
+                DeleteGraphNode(first);
                 return contig;
                 break;
             }
-            
+            DeleteDFSNode(tempDFSNode);
             
         }
     }
-
+    DeleteGraphNode(first);
     return contig;
     
     
@@ -859,7 +865,7 @@ char * ExtendContigLeft(char * contig, DBGraph * deBruijnGraph, long int pos, Re
     
     while(inCount!=0){
         if(inCount==0){
-            
+            DeleteGraphNode(first);
             return contig;
             break;
         }
@@ -885,6 +891,7 @@ char * ExtendContigLeft(char * contig, DBGraph * deBruijnGraph, long int pos, Re
                 SubContig(tempContig,contig,cycleCut,strlen(contig));
                 delete []contig;
                 contig = NULL;
+                DeleteGraphNode(first);
                 return tempContig;
             }
               
@@ -1021,18 +1028,21 @@ char * ExtendContigLeft(char * contig, DBGraph * deBruijnGraph, long int pos, Re
                     SubContig(tempContig,contig,cycleCut,strlen(contig));
                     delete []contig;
                     contig = NULL;
+                    DeleteDFSNode(tempDFSNode);
+                    DeleteGraphNode(first);
                     return tempContig;
                 }   
                 
             }else{
-                
+                DeleteDFSNode(tempDFSNode);
+                DeleteGraphNode(first);
                 return contig;
                 break;
             }
             
         }
     }
-    
+    DeleteGraphNode(first);
     return contig;
     
     
