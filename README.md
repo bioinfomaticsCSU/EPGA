@@ -1,7 +1,7 @@
 License
 =========
 
-Copyright (C) 2014 Junwei Luo(luojunwei@csu.edu.cn)
+Copyright (C) 2014 Jianxin Wang(jxwang@mail.csu.edu.cn),Junwei Luo(luojunwei@csu.edu.cn)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -16,7 +16,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-Junwei Luo(luojunwei@csu.edu.cn)
+Jianxin Wang(jxwang@mail.csu.edu.cn),Junwei Luo(luojunwei@csu.edu.cn)
 School of Information Science and Engineering
 Central South University
 ChangSha
