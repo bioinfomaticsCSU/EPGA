@@ -1,4 +1,4 @@
-GAGE: assembly result evaluation tool.  
+GAGE: assembly result evaluation tool.  （JDK 1.7 or latest version）
 
 ==========
 
