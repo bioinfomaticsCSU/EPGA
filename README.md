@@ -55,3 +55,5 @@ kmerLength is one integer shorter than read length which is used for building De
 
 threadNumber is thread number of program.
 
+3)Evaluation: please enter the directory GAGE for more information, or use QUAST to evaluate assembly results.
+
