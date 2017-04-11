@@ -1,6 +1,7 @@
 GAGE: assembly result evaluation tool.  
 
 ==========
+
 Install
 
 Run: tar xvzf MUMmer3.23.tar.gz
@@ -11,5 +12,5 @@ Run: make
 
 Run: tar xvzf gage-validation.tar.gz
 
-Run: sh getCorrectnessStats.sh <Reference Fasta> <Contig Fasta> <Scaffold Fasta>
+Run: sh getCorrectnessStats.sh Reference.Fasta Contig.Fasta Scaffold.Fasta
 
