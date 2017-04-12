@@ -1,8 +1,3 @@
-The Latest Version
-=========
-
-Please use the latest version: https://github.com/bioinfomaticsCSU/EPGA2.1
-
 License
 =========
 
@@ -55,5 +50,6 @@ kmerLength is one integer shorter than read length which is used for building De
 
 threadNumber is thread number of program.
 
-3)Evaluation: please enter the directory GAGE for more information, or use QUAST to evaluate assembly results.
+3)Evaluation.
+Please enter the directory GAGE for evaluate assembly results, or use QUAST to evaluate assembly results.
 
